@@ -30,5 +30,6 @@
       <primary-key name="PRIMARY" columns="id"/>
       <index name="users_email_unique" unique="true" columns="email"/>
     </table>
+    <procedure name="sp_update_tree" schema="" catalog="test" type="1"/>
   </data-source>
 </component>

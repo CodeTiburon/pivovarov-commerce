@@ -37,7 +37,12 @@
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
-					@if (Auth::guest())
+					{{--@if(Auth::checkadmin())--}}
+                        {{--<li><a href="{{ url('/admin') }}">Admin Panel</a></li>--}}
+                        {{--<li><a href="{{ url('/auth/login') }}">Login</a></li>--}}
+                        {{--<li><a href="{{ url('/auth/register') }}">Register</a></li>--}}
+
+                    @if (Auth::guest())
 						<li><a href="{{ url('/auth/login') }}">Login</a></li>
 						<li><a href="{{ url('/auth/register') }}">Register</a></li>
 					@else

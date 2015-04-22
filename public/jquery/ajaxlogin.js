@@ -2,10 +2,14 @@ $(document).ready(function(){
     var options = {
         success: function(data) {
 
-            //alert(data.redirect);
 
             if(data.redirect) {
                 window.location = data.redirect;
+            }
+
+            else if(data.badcredentials){
+                $('#errormessage').append('<p>' + data.badcredentials + '</p>').addClass('alert alert-danger');
+
             }
 
             else if(data.errors) {

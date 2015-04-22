@@ -63,16 +63,18 @@ class AuthController extends Controller {
         if ($this->auth->attempt($credentials, $request->has('remember')))
         {
             $validuser = $this->redirectPath();
-                $jsonarr = array('redirect' => $validuser);
+                $jsonarr = array('redirect'=>$validuser);
             return response()->json($jsonarr);
 
         }
-//
+
 //        return redirect($this->loginPath())
 //            ->withInput($request->only('email', 'remember'))
 //            ->withErrors([
 //                'email' => $this->getFailedLoginMessage(),
 //            ]);
+        $jsonarr = array('badcredentials' => $this->getFailedLoginMessage());
+            return response()->json($jsonarr);
     }
 
 

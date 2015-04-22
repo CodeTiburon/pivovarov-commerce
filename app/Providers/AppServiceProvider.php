@@ -29,6 +29,12 @@ class AppServiceProvider extends ServiceProvider {
 			'Illuminate\Contracts\Auth\Registrar',
 			'App\Services\Registrar'
 		);
+
+        $this->app->singleton('auth', function($app)
+        {
+            $app['auth.loaded'] = true;
+            return new \App\Services\AuthManager($app);
+        });
 	}
 
 }
