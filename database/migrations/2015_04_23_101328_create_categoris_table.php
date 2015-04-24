@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategoriesTable extends Migration {
+class CreateCategorisTable extends Migration {
 
   /**
    * Run the migrations.
@@ -11,17 +11,18 @@ class CreateCategoriesTable extends Migration {
    * @return void
    */
   public function up() {
-    Schema::create('categories', function(Blueprint $table) {
+    Schema::create('categoris', function(Blueprint $table) {
       // These columns are needed for Baum's Nested Set implementation to work.
       // Column names may be changed, but they *must* all exist and be modified
       // in the model.
       // Take a look at the model scaffold comments for details.
       // We add indexes on parent_id, lft, rgt columns by default.
       $table->increments('id');
-      $table->string('name')->nullable()->index();
+      $table->integer('parent_id')->nullable()->index();
       $table->integer('lft')->nullable()->index();
       $table->integer('rgt')->nullable()->index();
       $table->integer('depth')->nullable();
+      $table->string('name', 255);
 
       // Add needed columns here (f.ex: name, slug, path, etc.)
       // $table->string('name', 255);
@@ -36,7 +37,7 @@ class CreateCategoriesTable extends Migration {
    * @return void
    */
   public function down() {
-    Schema::drop('categories');
+    Schema::drop('categoris');
   }
 
 }

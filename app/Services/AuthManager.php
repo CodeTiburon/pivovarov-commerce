@@ -9,7 +9,7 @@ class AuthManager extends AuthManagerBase {
         if ($this->check()) {
 
             if ($this->user()->role == 'admin'){
-                echo "ТЫ АДМИН";
+                return true;
             }
 
         }

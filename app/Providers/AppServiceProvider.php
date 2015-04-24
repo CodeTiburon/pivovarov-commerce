@@ -35,6 +35,11 @@ class AppServiceProvider extends ServiceProvider {
             $app['auth.loaded'] = true;
             return new \App\Services\AuthManager($app);
         });
+
+        $this->app->singleton('render', function($app)
+        {
+            return new \App\Services\RenderCategoriManager($app);
+        });
 	}
 
 }
