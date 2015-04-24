@@ -1,4 +1,6 @@
-<?php namespace Illuminate\Support\Facades;
+<?php namespace App\Facade;
+
+use Illuminate\Support\Facades\Facade ;
 
 /**
  * @see \Illuminate\Foundation\Application

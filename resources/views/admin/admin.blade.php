@@ -9,14 +9,21 @@
 @endsection
 
 @section('content')
-
+    <ul>
     @foreach($tree as $tr)
-       <?php echo "$tr";?>
-
+       <?php $hi = $helper->renderTree($tr);
+            print_r($hi)?>
     @endforeach
+    </ul>
 
 @endsection
 
 @section('logo')
             <li><a href="{{ url('/auth/admin') }}">Logo</a></li>
+@endsection
+
+@section('scripts')
+
+            <script type="text/javascript" src="{{ asset('/jquery/AddCategory.js') }}"></script>
+
 @endsection
