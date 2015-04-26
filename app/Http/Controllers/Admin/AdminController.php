@@ -2,7 +2,6 @@
 
 use App\Categori;
 use App\Http\Controllers\Controller;
-use App\Services\RenderCategoriManager;
 use Illuminate\Http\Request;
 use RenderTree;
 
@@ -20,22 +19,42 @@ class AdminController extends Controller {
         return view('admin.admin', ['tree' => $tree]);
 	}
 
-    public function getAdd($categoriId)
+    public function getAdd(Request $request)
     {
-       Categori::find($categoriId)->children()->create(['name' => 'Child 1']);
+//        $valid = Validator::make($request->all(), [
+//            'name' => 'required|unique:categoris|alpha',
+//        ]);
+//
+//        if ($valid->fails())
+//        {
+//            $messages = $valid->messages();
+//            $errors = array('errors' => $messages);
+//            json_encode($errors);
+//            return response()->json($errors);
+//        }
 
-        return view('admin.admin');
+        Categori::find($data)->children()->create(['name' => 'monitor']);
+
+//        $validcategory = $this->redirectPath();
+//        $redir = array('redirect'=>$validcategory);
+//        return response()->json($redir);
+
     }
 
-    public function getDell($categoriId)
+    public function getDell(Request $request)
     {
-        Categori::find($categoriId)->delete();
+        //$category = Categori::find($categoriId)->delete();
 
-        return view('admin.admin');
+//        $validcategory = $this->redirectPath();
+//        $redir = array('redirect'=>$validcategory);
+//        return response()->json($redir);
     }
 
-    public function getUpdate()
+    public function getUpdate(Request $request)
     {
-        return view('admin.admin');
+
+        $data = $request->all();
+        $t = Categori::find($data);
+        return $t;
     }
 }

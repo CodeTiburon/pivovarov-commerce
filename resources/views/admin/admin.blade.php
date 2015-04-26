@@ -9,11 +9,16 @@
 @endsection
 
 @section('content')
+    <div id="tree">
             <ul>
                 @foreach($tree as $tr)
                     <?php print_r(RenderTree::renderTree($tr)); ?>
                 @endforeach
             </ul>
+        <div id="text">
+
+        </div>
+    </div>
 @endsection
 
 @section('logo')
@@ -22,6 +27,6 @@
 
 @section('scripts')
 
-            <script type="text/javascript" src="{{ asset('/jquery/AddCategory.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('/jquery/Category.js') }}"></script>
 
 @endsection
