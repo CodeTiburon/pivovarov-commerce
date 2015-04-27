@@ -2,7 +2,7 @@
     text-align: center;
 }
 #tree{
-    background-color: #080808;
+    background-color:gray;
     font-size: 150%;
     color: blue;
 }
@@ -17,11 +17,23 @@ li{
     display: none;
 }
 .actives{
-    color:red;
-}
-#tree li{
-    width: 50px;
+    color:#ffffff;
+    font-weight: bold;
 }
 #CategoryCreateButton{
     margin: 15px;
+}
+li h3{
+    display: inline-block;
+}
+#dell{
+    padding-right: 10px;
+}
+#CategorySiblingCreateButton{
+    display: inline-block
+}
+#errormessage{
+    text-align: center;
+    color: #c7254e;
+    font-weight: bold;
 }

@@ -15,9 +15,15 @@
                     <?php print_r(RenderTree::renderTree($tr)); ?>
                 @endforeach
             </ul>
+<div class="container-fluid">
+   <div id = errormessage >
+
+   </div>
+</div>
         <div id="text">
-            <div class="actives">Введите имя ктегории</div><div><input type="text" width="120" height="10"></input></div>
-            <button id="CategoryCreateButton" type="button" class="btn btn-primary">Отправить</button>
+            <div class="actives">Name of Category</div><div><input  type="text" width="120" height="10"></div>
+            <button id="CategorySiblingCreateButton" type="button" class="btn btn-primary">Make Sibling</button>
+            <button id="CategoryCreateButton" type="button" class="btn btn-primary">Make Child</button>
 
         </div>
     </div>

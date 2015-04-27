@@ -14,7 +14,7 @@ class RenderTree extends Facade {
      */
     protected static function getFacadeAccessor()
     {
-        return 'render';
+        return 'RenderTree';
     }
 
 }
