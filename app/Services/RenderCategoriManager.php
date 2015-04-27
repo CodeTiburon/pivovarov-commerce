@@ -10,7 +10,7 @@ class RenderCategoriManager
            return '<li data-id="'.$tree->id.'"">'.$tree->name.'</li>';
        }
        else{
-            $html ='<li data-id="'.$tree->id.'"">'.$tree->name;
+            $html ='<li data-id="'.$tree->id.'""><h3>'.$tree->name.'</h3>';
 
             $html .= '<ul>';
 

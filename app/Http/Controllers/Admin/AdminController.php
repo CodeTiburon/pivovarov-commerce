@@ -56,5 +56,7 @@ class AdminController extends Controller {
         $data = $request->all();
         $t = Categori::find($data);
         return $t;
+
+
     }
 }

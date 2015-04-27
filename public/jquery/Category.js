@@ -4,8 +4,8 @@ $(document).ready(function(){
         li.on('click', function(event){
             event.stopPropagation(); // отменяем всплытие пузырька
 
-            li.removeClass('text-primary'); // отменяем выделение прошлых элементов
-            $(this).addClass('text-primary'); // выделяем текущий элемент
+            li.removeClass('selected'); // отменяем выделение прошлых элементов
+            $(this).addClass('selected'); // выделяем текущий элемент
 
             myinput.empty();  // удаляем инпут если он уже есть
             myinput.append('<div class="actives">Введите имя ктегории</div><div><input type="text" width="120" height="10"></input></div>');
