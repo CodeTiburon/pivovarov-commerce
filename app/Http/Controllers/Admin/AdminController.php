@@ -21,23 +21,25 @@ class AdminController extends Controller {
 
     public function getAdd(Request $request)
     {
-//        $valid = Validator::make($request->all(), [
-//            'name' => 'required|unique:categoris|alpha',
-//        ]);
-//
-//        if ($valid->fails())
-//        {
-//            $messages = $valid->messages();
-//            $errors = array('errors' => $messages);
-//            json_encode($errors);
-//            return response()->json($errors);
-//        }
+        $valid = Validator::make($request->all(), [
+            'name' => 'required|unique:categoris|alpha',
+        ]);
 
-        Categori::find($data)->children()->create(['name' => 'monitor']);
+        if ($valid->fails())
+        {
+            $messages = $valid->messages();
+            $errors = array('errors' => $messages);
+            json_encode($errors);
+            return response()->json($errors);
+        }
+         $data = $request->get('id');
+         $category = $request->get('text');
 
-//        $validcategory = $this->redirectPath();
-//        $redir = array('redirect'=>$validcategory);
-//        return response()->json($redir);
+        Categori::find($data)->children()->create(['name' => $request->get('text')]);
+
+        $validcategory = $this->redirectPath();
+        $redir = array('redirect'=>$validcategory);
+        return response()->json($redir);
 
     }
 
@@ -53,10 +55,10 @@ class AdminController extends Controller {
     public function getUpdate(Request $request)
     {
 
-        $data = $request->all();
-        $t = Categori::find($data);
-        return $t;
-
-
+//         $data = $request->all();
+//           $category = $request->get('text');
+//
+//         Categori::find($data)->get('name')->makeChildOf($category);
+//
     }
 }

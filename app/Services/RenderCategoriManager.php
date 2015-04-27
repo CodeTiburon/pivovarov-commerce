@@ -7,7 +7,7 @@ class RenderCategoriManager
     public function renderTree($tree)
     {
        if( $tree->IsLeaf() ){
-           return '<li data-id="'.$tree->id.'"">'.$tree->name.'</li>';
+           return '<li data-id="'.$tree->id.'""><h3>'.$tree->name.'</h3></li>';
        }
        else{
             $html ='<li data-id="'.$tree->id.'""><h3>'.$tree->name.'</h3>';

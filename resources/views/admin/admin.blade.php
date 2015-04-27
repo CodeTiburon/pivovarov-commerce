@@ -16,6 +16,8 @@
                 @endforeach
             </ul>
         <div id="text">
+            <div class="actives">Введите имя ктегории</div><div><input type="text" width="120" height="10"></input></div>
+            <button id="CategoryCreateButton" type="button" class="btn btn-primary">Отправить</button>
 
         </div>
     </div>

@@ -17,8 +17,6 @@ Route::get('home', 'HomeController@index');
 
 //Route::get('/admin',['middleware' => 'admin', 'uses' => 'Admin\AdminController@index']);
 
-
-
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
