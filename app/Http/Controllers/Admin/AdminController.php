@@ -11,6 +11,7 @@ class AdminController extends Controller {
 
     use AuthenticatesAndRegistersUsers;
 
+
     public function __construct()
     {
         $this->middleware('admin');
@@ -22,7 +23,7 @@ class AdminController extends Controller {
         return view('admin.admin', ['tree' => $tree]);
 	}
 
-    public function getAddchild(Request $request)
+    public function postAddchild(Request $request)
     {
         $this->validate($request, [
             'name' => 'required|unique:categoris|alpha',
@@ -31,14 +32,21 @@ class AdminController extends Controller {
          $data = $request->input('id');
          $category = $request->input('name');
 
-        Categori::find($data)->children()->create(['name' => $category]);
+        $root = Categori::find($data);
+        $sibling = Categori::create(['name' => $category]);
+        $sibling->makeChildOf($root);
 
-//        $validcategory = $this->redirectPath();
-//        $redir = array('redirect'=>$validcategory);
-//        return response()->json($redir);
+
+        $html = RenderTree::renderTree($sibling);
+
+        $parent = $this->findPatentID($sibling);
+
+        $add = array('html'=>$html,'parent_id'=>($parent));
+        return response()->json($add);
+
 
     }
-    public function getAddsibling(Request $request)
+    public function postAddsibling(Request $request)
     {
         $this->validate($request, [
             'name' => 'required|unique:categoris|alpha',
@@ -51,32 +59,26 @@ class AdminController extends Controller {
         $sibling = Categori::create(['name' => $category]);
         $sibling->makeSiblingOf($root);
 
+        $html = RenderTree::renderTree($sibling);
+        $parent = $this->findPatentID($sibling);
+
+        $redir = array('html'=>$html,'parent_id'=>($parent));
+        return response()->json($redir);
     }
 
 
-    public function getDell(Request $request)
+    public function postDell(Request $request)
     {
-//        $this->validate($request, [
-//            'id' => 'required|unique:categoris|alpha',
-//        ]);
-
         $data = $request->input('id');
 
         Categori::find($data)->delete();
 
-//        $validcategory = $this->redirectPath();
-//        $redir = array('redirect'=>$validcategory);
-//        return response()->json($redir);
+        $redir = array('parent_id'=>$data);
+        return response()->json($redir);
     }
 
-    public function getUpdate(Request $request)
+    public function findPatentID($sibling)
     {
-
-//         $data = $request->all();
-//           $category = $request->get('text');
-//
-//         Categori::find($data)->get('name')->makeChildOf($category);
-//
+        return $sibling->getParentId();
     }
-
 }
