@@ -60,9 +60,9 @@ class AdminController extends Controller {
         $sibling->makeSiblingOf($root);
 
         $html = RenderTree::renderTree($sibling);
-        $parent = $this->findPatentID($sibling);
+        $rootId = $request->input('id');
 
-        $redir = array('html'=>$html,'parent_id'=>($parent));
+        $redir = array('html'=>$html,'selected_id'=>($rootId));
         return response()->json($redir);
     }
 
@@ -73,7 +73,7 @@ class AdminController extends Controller {
 
         Categori::find($data)->delete();
 
-        $redir = array('parent_id'=>$data);
+        $redir = array('selected_id'=>$data);
         return response()->json($redir);
     }
 

@@ -1,5 +1,6 @@
 $(document).ready(function(){
     var myinput = $("#text");
+    var $_token = $('#token').val();
     //var clicLi = function(event) {
     //                    event.stopPropagation(); // отменяем всплытие пузырька
     //                    li.removeClass('selected'); // отменяем выделение прошлых элементов
@@ -21,7 +22,6 @@ $(document).ready(function(){
                     //ДОБАВЛЯЕМ ПОДКАТЕГОРИЮ
     $('#CategoryCreateButton').on('click',function(event){
         var text =  $('#categ').val();
-        var $_token = $('#token').val();
         var request = $.ajax({
                 url: "admin/addchild",
                 method: "POST",
@@ -49,7 +49,6 @@ $(document).ready(function(){
                   //ДОБАВЛЯЕМ КАТЕГОРИЮ НА ТОТ ЖЕ УРОВЕНЬ
     $('#CategorySiblingCreateButton').on('click',function(event){
         var text =  $('#categ').val();
-        var $_token = $('#token').val();
         var request = $.ajax({
             url: "admin/addsibling",
             method: "POST",
@@ -57,9 +56,8 @@ $(document).ready(function(){
             data: { id : targ, name : text }
         });
         request.done(function(data) {
-
-           var element = $("#tree li[data-id="+data.parent_id+"] > ul");
-            $(data.html).appendTo(element);
+           var element = $("#tree li[data-id="+data.selected_id+"]");
+            $(data.html).insertAfter(element);
         });
         request.fail(function(jqXHR) {
             var responseText = jqXHR.responseText;
@@ -74,11 +72,10 @@ $(document).ready(function(){
 
     $(document).on('click',"h3 #dell",function(event){
         event.stopPropagation();
-
+        $(myinput).hide(1000);
         $('#myModal').modal('show');
         $('#confirm').on('click',function(event){
         $('#myModal').modal('hide');
-            var $_token = $('#token').val();
             var request = $.ajax({
                 url: "admin/dell",
                 method: "POST",
@@ -86,7 +83,8 @@ $(document).ready(function(){
                 data: { id : targ }
             });
                 request.done(function(data) {
-
+                    var element = $("#tree li[data-id="+data.selected_id+"]");
+                    element.hide();
                 });
                 request.fail(function(jqXHR) {
                     var responseText = jqXHR.responseText;

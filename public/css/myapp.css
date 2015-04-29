@@ -2,7 +2,7 @@
     text-align: center;
 }
 #tree{
-    background-color:gray;
+    border:solid #080808;
     font-size: 150%;
     color: blue;
 }
@@ -36,4 +36,7 @@ li h3{
     text-align: center;
     color: #c7254e;
     font-weight: bold;
+}
+#products_add{
+    padding-top: 30px ;;
 }

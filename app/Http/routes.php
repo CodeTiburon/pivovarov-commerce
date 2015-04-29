@@ -18,7 +18,8 @@ Route::get('home', 'HomeController@index');
 //Route::get('/admin',['middleware' => 'admin', 'uses' => 'Admin\AdminController@index']);
 
 Route::controllers([
-	'auth' => 'Auth\AuthController',
+	'auth'     => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
-    'admin' =>'Admin\AdminController',
+    'admin'    =>'Admin\AdminController',
+    'product'  =>'Admin\ProductController',
 ]);
