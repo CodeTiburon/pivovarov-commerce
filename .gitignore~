@@ -1,5 +1,4 @@
 .idea
-/public/photo
 /vendor
 /node_modules
 .env

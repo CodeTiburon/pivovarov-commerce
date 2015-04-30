@@ -4,20 +4,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-
     protected $fillable = ['name', 'description','photo_id'];
-    public function showAll()
-    {
-        return Product::all();
-    }
 
-    public function createProduct(array $data)
+    public function ProductToCategory()
     {
-        return Product::create([
-            'name' => $data['name'],
-            'description' => $data['Description'],
-            'photo_id' => 3,
-        ]);
+        return $this->belongsToMany('App\Categori','category_product','product_id','category_id');
     }
-
+    public function ProductToPhoto()
+    {
+        return $this->hasMany('App\Models\Photo');
+    }
 }

@@ -24,10 +24,8 @@
             <div class="form-group">
                 <label class="col-md-4 control-label">Select category</label>
                 <div class="col-md-6">
-                    <select name="selected"  class="multi" multiple >
-                        @foreach($tree as $id => $name)
-                            <?php print_r("<option value=".$id.">".$name."</option>");?>
-                        @endforeach
+                    <select name="selected[]"  class="multi" multiple >
+                        {{ RenderTree::CategoryFilter($tree)}}
                     </select>
                 </div>
             </div>
@@ -42,7 +40,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label">Upload photo</label>
                 <div class="col-md-6">
-                    <input type="file" multiple class="file-loading" name="photo">
+                    <input type="file" multiple class="file-loading" name="photo[]">
                 </div>
             </div>
 
@@ -56,35 +54,11 @@
         </form>
     <div class="container-fluid">
        <div id = errormessage >
-
+           @foreach ($errors->all() as $error)
+               <li>{{ $error }}</li>
+           @endforeach
        </div>
 </div>
-        <div id="text">
-            <input id = "token"type="hidden" name="_token" value="{{ \RenderTree::tokenEncrypt() }}">
-            <div class="actives">Name of Category</div><div><input id="categ" type="text" width="120" height="10"></div>
-            <button id="CategorySiblingCreateButton" type="button" class="btn btn-primary">Make Sibling</button>
-            <button id="CategoryCreateButton" type="button" class="btn btn-primary">Make Child</button>
-
-        </div>
-    </div>
-
-            <div class="modal fade" id="myModal">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title">Delete category</h4>
-                        </div>
-                        <div class="modal-body">
-                            <p>Do you really wont delete this category?</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="button" id="confirm" class="btn btn-primary">Ok</button>
-                        </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
 @endsection
 
 @section('logo')
@@ -93,6 +67,6 @@
 
 @section('scripts')
 
-            <script type="text/javascript" src="{{ asset('/jquery/Category.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('/jquery/ProductForm.js') }}"></script>
 
 @endsection

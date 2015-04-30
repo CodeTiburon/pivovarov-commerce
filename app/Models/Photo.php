@@ -8,17 +8,8 @@ class Photo extends Model
 
     protected $fillable = ['image', 'product_id'];
 
-    public function showAll()
+        public function PhotoToProduct()
     {
-        return Photo::all();
+        return $this->belongsTo('App\Models\Product');
     }
-
-    public function CreatePhoto(array $data)
-    {
-        return Photo::create([
-            'image' => $data['image'],
-            'product_id' => $data['id'],
-        ]);
-    }
-
 }

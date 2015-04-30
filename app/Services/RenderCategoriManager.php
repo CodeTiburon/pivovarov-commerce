@@ -33,4 +33,16 @@ class RenderCategoriManager
             return $encrypted_token;
         }
     }
+
+    public function CategoryFilter($tree)
+    {
+        foreach($tree as $category) {
+            if ($category->isLeaf()) {
+                echo '<option value="' . $category->id . '">' . $category->name . '</option>';
+            } else {
+                echo '<option  value="' . $category->id . '" disabled="disabled">' . $category->name . '</option>';
+                $this->CategoryFilter($category->children);
+            }
+        }
+    }
 }

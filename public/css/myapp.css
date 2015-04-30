@@ -40,3 +40,9 @@ li h3{
 #products_add{
     padding-top: 30px ;;
 }
+.multi{
+    width: 400px;
+}
+#cat_name{
+    color:blue;
+}

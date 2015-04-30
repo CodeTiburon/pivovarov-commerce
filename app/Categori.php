@@ -99,5 +99,9 @@ class Categori extends Node {
   // Please refer the Laravel documentation for further instructions on how
   // to hook your own callbacks/observers into this events:
   // http://laravel.com/docs/5.0/eloquent#model-events
+    public function CategoryToProduct()
+    {
+        return $this->belongsToMany('App\Models\Product','category_product','category_id','product_id');
+    }
 
 }
