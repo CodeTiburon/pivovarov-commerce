@@ -19,19 +19,23 @@ class ProductManager
 
     public function NewPhoto($photos,$product)
     {
-        $uploadDir = base_path() . '/public/photo/';
-        $productId = $product->id;
-        foreach($photos as $photo) {
-            $imagePrefix = uniqid();
-            $fileName = $imagePrefix .$photo->getClientOriginalName();
-            $uploadfile = $uploadDir . $fileName;
+        if($photos[0]){
+            $uploadDir = base_path() . '/public/photo/';
+            $productId = $product->id;
+            foreach($photos as $photo) {
+                $imagePrefix = uniqid();
+                $fileName = $imagePrefix . $photo->getClientOriginalName();
+                $uploadfile = $uploadDir . $fileName;
 
-            $photoUpload = new Photo(['product_id' => $productId,
-                                        'image'    => $uploadfile,]);
-            $photoUpload->save();
+                $photoUpload = new Photo(['product_id' => $productId,
+                                          'image'      => $uploadfile,]);
+                $photoUpload->save();
 
-            $photo->move($uploadDir, $fileName);
-
+                $photo->move($uploadDir, $fileName);
+            }
+        }
+        else{
+            exit();
         }
     }
 }

@@ -25,8 +25,8 @@
         <div id="text">
             <input id = "token"type="hidden" name="_token" value="{{ \RenderTree::tokenEncrypt() }}">
             <div class="actives" id="cat_name">Name of Category</div><div><input id="categ" type="text" width="120" height="10"></div>
-            <button id="CategorySiblingCreateButton" type="button" class="btn btn-primary">Make Sibling</button>
-            <button id="CategoryCreateButton" type="button" class="btn btn-primary">Make Child</button>
+            <button id="CategorySiblingCreateButton" type="button" class="btn btn-default">Make Sibling</button>
+            <button id="CategoryCreateButton" type="button" class="btn btn-default">Make Child</button>
 
         </div>
     </div>

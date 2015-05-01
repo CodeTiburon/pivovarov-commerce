@@ -1,9 +1,9 @@
 <?php namespace App\Http\Controllers\Admin;
 use App\Categori;
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use Request;
 use Illuminate\Http\Request as V;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use App\Services\ProductManager;
 
 class ProductController extends Controller
@@ -17,14 +17,17 @@ class ProductController extends Controller
     public function getIndex()
     {
         $tree = Categori::all()->toHierarchy();
+        $products = Product::all();
 
-        return view('admin.product', ['tree' => $tree]);
+        return view('admin.product', ['tree' => $tree,'products' => $products]);
     }
     public function postProductAdd(ProductManager $productManager, V $request)
     {
         $this->validate($request, [
-            'name' => 'required',
-        ]);
+                                    'name'        => 'required|unique:products|alpha',
+                                    'selected'    => 'required',
+                                    'Description' => 'required',
+                                  ]);
 
 
         $data = Request::all();
@@ -34,8 +37,8 @@ class ProductController extends Controller
                         //Move Photo and insert in to Photo table
         $productManager->NewPhoto($files,$product);
 
+        $ok = array('ok'=>'ok');
+        return response()->json($ok);
+
     }
-
-}
-
-//|unique:products|alpha
+ }

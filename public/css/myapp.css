@@ -2,12 +2,11 @@
     text-align: center;
 }
 #tree{
-    border:solid #080808;
     font-size: 150%;
-    color: blue;
+    color: #080808;
 }
 .selected > h3 {
-    color: red;
+    color: #a94442;
 }
 li{
     cursor: pointer;
@@ -44,5 +43,33 @@ li h3{
     width: 400px;
 }
 #cat_name{
-    color:blue;
+    color: #080808;
+}
+#messege{
+    text-align: center;
+}
+.crum{
+    text-align: right;
+    font-size: 14px;
+    font-style: italic;
+    display: none;
+}
+.product{
+    padding-left: 10px;
+    padding-top: 10px;
+    font-weight: bold;
+    font-style: italic;
+    cursor: pointer;
+
+}
+#pageproduct{
+    font-size: 150%;
+    background-color: #c0c0c0;
+    color: #080808;
+}
+body{
+    background-color: floralwhite;
+}
+#form_product_add{
+    display: none;
 }

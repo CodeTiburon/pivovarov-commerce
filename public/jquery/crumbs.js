@@ -1,0 +1,13 @@
+$(document).ready(function(){
+    $('.product').on('click',function(){
+        $('.crum').toggle(2000);
+    })
+    $('.add_form').on('click',function(){
+        $('#pageproduct').hide(1000);
+        $('#form_product_add').show(2000);
+    })
+    $('#back_to_list').on('click',function(){
+        $('#form_product_add').hide(1000);
+        $('#pageproduct').show(2000);
+    })
+});
