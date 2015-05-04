@@ -11,6 +11,7 @@
 
 @section('content')
     <div id="pageproduct">
+        <input id = "tokendelete"type="hidden" name="_tokendelete" value="{{ \RenderTree::tokenEncrypt() }}">
         <?php RenderTree::CategoryCrumbs($products);?>
     </div>
  <div id="form_product_add">
@@ -19,9 +20,9 @@
 
         </div>
     </div>
-     <button id="back_to_list" type="submit" class="btn btn-default">
+     <a href="{{ url('/product') }}"><button id="back_to_list" type="submit" class="btn btn-default">
          Back to Product
-     </button>
+     </button></a>
 
         <form id="products_add"  class="form-horizontal" role="form" method="POST" enctype="multipart/form-data" action="{{ url('/product/product-add') }}">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">

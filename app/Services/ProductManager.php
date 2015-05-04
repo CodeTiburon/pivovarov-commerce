@@ -27,6 +27,10 @@ class ProductManager
                 $fileName = $imagePrefix . $photo->getClientOriginalName();
                 $uploadfile = $uploadDir . $fileName;
 
+//                $image = new \Imagick($uploadfile);
+//                $image->thumbnailImage(50,0);
+
+
                 $photoUpload = new Photo(['product_id' => $productId,
                                           'image'      => $uploadfile,]);
                 $photoUpload->save();

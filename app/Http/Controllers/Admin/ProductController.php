@@ -19,26 +19,48 @@ class ProductController extends Controller
         $tree = Categori::all()->toHierarchy();
         $products = Product::all();
 
-        return view('admin.product', ['tree' => $tree,'products' => $products]);
+        return view('admin.product', ['tree' => $tree, 'products' => $products]);
     }
+
     public function postProductAdd(ProductManager $productManager, V $request)
     {
         $this->validate($request, [
-                                    'name'        => 'required|unique:products|alpha',
-                                    'selected'    => 'required',
-                                    'Description' => 'required',
-                                  ]);
+            'name' => 'required|unique:products|alpha',
+            'selected' => 'required',
+            'Description' => 'required',
+        ]);
 
 
         $data = Request::all();
         $files = Request::file('photo');
-                        //Create product, insert in to category_product
+        //Create product, insert in to category_product
         $product = $productManager->NewProduct($data);
-                        //Move Photo and insert in to Photo table
-        $productManager->NewPhoto($files,$product);
+        //Move Photo and insert into Photo table
+        $productManager->NewPhoto($files, $product);
 
-        $ok = array('ok'=>'ok');
+        $ok = array('ok' => 'ok');
         return response()->json($ok);
 
     }
- }
+
+    public function postProductDelete(V $request)
+    {
+        $categoryId = $request->input('catid');
+        $productId  = $request->input('prodid');
+        $currentProduct = Product::find($productId);
+        $currentProduct->ProductToCategory()->detach(['category_id'=>$categoryId]);
+        $currentCategory = $currentProduct->ProductToCategory()->get();
+            if(!$currentCategory->toArray()){
+                $photos = $currentProduct->ProductToPhoto()->get();
+                    foreach ($photos as $photo) {
+                        unlink($photo->image);
+                        $photo->delete();
+                    }
+                $currentProduct->ProductToPhoto()->delete();
+                $currentProduct->delete();
+                $delete = array('delete'=>'ok');
+                return response()->json($delete);
+            }
+    }
+}
+

@@ -73,3 +73,7 @@ body{
 #form_product_add{
     display: none;
 }
+.delete_product{
+    float: left;
+    margin-left: 20px;
+}
