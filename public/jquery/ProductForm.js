@@ -32,7 +32,8 @@ $(document).ready(function(){
 
     $(".proddell").on('click',function(){
         var targ = $(this).closest('.crum');
-        var p = targ.prev('.product');
+        var more = targ.prev('.more');
+        var p = more.prev('.product');
         var categoryId = ($(this).data('id_category'));
         var productId  = ($(this).data('id_product'));
         var request = $.ajax({
@@ -43,12 +44,22 @@ $(document).ready(function(){
         });
         request.done(function(data) {
             if(data){
-                console.log(p);
-                p.hide(2000);
-                targ.hide(2000);
+                p.hide(2000, function(){
+                    p.remove()});
+                more.hide(2000, function(){
+                    more.remove()});
+                targ.hide(2000, function(){
+                    targ.remove()});
             };
-            targ.hide(2000);
+            targ.hide(2000, function(){
+                targ.remove()});
         });
-
     });
+                //more
+    $(".more").on('click',function(){
+        var productId = $(this).prev('.product').data('id');
+        window.location.href = "http://test.ru/product/more/" + productId;
+    });
+
+
 });

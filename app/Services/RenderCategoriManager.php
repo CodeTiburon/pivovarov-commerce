@@ -49,7 +49,7 @@ class RenderCategoriManager
     public function CategoryCrumbs($products)
     {
         foreach($products as $product) {
-            echo '<div class="product" >>'. ucfirst($product->name) .  '</div>';
+            echo '<div class="product" data-id="'.$product->id .'" >>'. ucfirst($product->name) . '</div>'.'<div class ="more">'.'<button class ="btn btn-mini"  type="button">More...</button>' . '</div>';
             $categories = $product->ProductToCategory()->get();
             foreach ($categories as $category) {
 //                echo '<br/>';

@@ -50,17 +50,30 @@ class ProductController extends Controller
         $currentProduct = Product::find($productId);
         $currentProduct->ProductToCategory()->detach(['category_id'=>$categoryId]);
         $currentCategory = $currentProduct->ProductToCategory()->get();
-            if(!$currentCategory->toArray()){
-                $photos = $currentProduct->ProductToPhoto()->get();
-                    foreach ($photos as $photo) {
-                        unlink($photo->image);
-                        $photo->delete();
-                    }
-                $currentProduct->ProductToPhoto()->delete();
-                $currentProduct->delete();
-                $delete = array('delete'=>'ok');
-                return response()->json($delete);
-            }
+
+        if (!$currentCategory->toArray()){
+            $photos = $currentProduct->ProductToPhoto()->get();
+                foreach ($photos as $photo) {
+                    unlink(base_path() . '/public/photo/' . $photo->image);
+                    $photo->delete();
+                }
+            $currentProduct->ProductToPhoto()->delete();
+            $currentProduct->delete();
+            $delete = array('delete'=>'ok');
+            return response()->json($delete);
+        }
+    }
+
+    public function getMore($productId)
+    {
+        $currentProduct = Product::find($productId);
+        $firstPhoto = Product::find($productId)->ProductToPhoto()->first();
+        $secondaryPhotos = Product::find($productId)->ProductToPhoto()->where('id', '!=', $firstPhoto->id)->get();
+
+
+
+        return view('admin.more', ['product' => $currentProduct,'secondaryPhotos' =>$secondaryPhotos,
+                                    'firstPhoto' =>$firstPhoto]);
     }
 }
 

@@ -8,6 +8,9 @@
 
 	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/myapp.css') }}" rel="stylesheet">
+    <link href="{{ asset('/jquery/funcybox/jquery.fancybox.css') }}" rel="stylesheet">
+    <link href="{{ asset('/jquery/funcybox/jquery.fancybox-buttons.css') }}" rel="stylesheet">
+    <link href="{{ asset('/jquery/funcybox/jquery.fancybox-thumbs.css') }}" rel="stylesheet">
 
 	<!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
@@ -64,6 +67,12 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
     <script type="text/javascript" src="{{ asset('/jquery/jquery.form.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/jquery/multiple.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/jquery/funcybox/jquery.fancybox.pack.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/jquery/funcybox/jquery.fancybox-buttons.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/jquery/funcybox/jquery.fancybox-media.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/jquery/funcybox/jquery.fancybox-thumbs.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/jquery/funcybox/jquery.mousewheel-3.0.6.pack.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/jquery/jquery.elevatezoom.js') }}"></script>
     @yield('scripts')
 
 
