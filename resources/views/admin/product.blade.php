@@ -27,6 +27,10 @@
         <form id="products_add"  class="form-horizontal" role="form" method="POST" enctype="multipart/form-data" action="{{ url('/product/product-add') }}">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
+            <div id="product_create">
+                Create New Product
+            </div>
+
             <div class="form-group">
                 <label class="col-md-4 control-label">Name</label>
                 <div class="col-md-6">

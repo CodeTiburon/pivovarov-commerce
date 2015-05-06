@@ -72,7 +72,9 @@
     <script type="text/javascript" src="{{ asset('/jquery/funcybox/jquery.fancybox-media.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/jquery/funcybox/jquery.fancybox-thumbs.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/jquery/funcybox/jquery.mousewheel-3.0.6.pack.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('/jquery/jquery.elevatezoom.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/jquery/evevatezoom/jquery.elevatezoom.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/jquery/myelevatezoom.js') }}"></script>
+
     @yield('scripts')
 
 

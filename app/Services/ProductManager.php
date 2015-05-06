@@ -10,7 +10,7 @@ class ProductManager
     {
         $product = new Product(['name'        => $data['name'],
                                 'description' => $data['Description'],
-                                'photo_id'    => 3,]);
+                                'photo_id'    => 3]);
         $product->save();
         $product->ProductToCategory()->sync($data['selected']);
 
@@ -39,9 +39,30 @@ class ProductManager
                     $image->writeImage();
                 }
             }
+            $firstPhoto = Product::find($product->id)->ProductToPhoto()->first();
+            $product->photo_id = $firstPhoto->id;
+            $product->save();
         }
         else{
             exit();
         }
+    }
+    public function productUpdate($data,$id)
+    {
+        $product = Product::find($id);
+
+        if(isset($data['selected'])) {
+            $product->ProductToCategory()->attach($data['selected']);
+        }
+
+        $product->update(['name' => $data['name'] ,'description' => $data['Description'] ]);
+
+    }
+
+    public function makeGeneral($data)
+    {
+        $product = Product::find($data['productId']);
+        $product->photo_id = $data['photoId'];
+        $product->save();
     }
 }

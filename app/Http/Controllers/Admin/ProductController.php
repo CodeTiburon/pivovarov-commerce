@@ -25,7 +25,7 @@ class ProductController extends Controller
     public function postProductAdd(ProductManager $productManager, V $request)
     {
         $this->validate($request, [
-            'name' => 'required|unique:products|alpha',
+            'name' => 'required|unique:products',
             'selected' => 'required',
             'Description' => 'required',
         ]);
@@ -66,14 +66,32 @@ class ProductController extends Controller
 
     public function getMore($productId)
     {
+
         $currentProduct = Product::find($productId);
-        $firstPhoto = Product::find($productId)->ProductToPhoto()->first();
-        $secondaryPhotos = Product::find($productId)->ProductToPhoto()->where('id', '!=', $firstPhoto->id)->get();
+        if($currentProduct->photo_id != 3) {
+            $firstPhoto = $currentProduct->ProductToPhoto()->where('id', '=', $currentProduct->photo_id)->get();
+            $secondaryPhotos = Product::find($productId)->ProductToPhoto()->where('id', '!=', $currentProduct->photo_id)->get();
+            $tree = Categori::all()->toHierarchy();
+            return view('admin.more', ['product' => $currentProduct,'secondaryPhotos' =>$secondaryPhotos,
+                'firstPhoto' =>$firstPhoto[0],'tree' => $tree]);
+        } else {
+            $tree = Categori::all()->toHierarchy();
+            return view('admin.more', ['product' => $currentProduct,
+                                'firstPhoto' => null,'tree' => $tree]);
+        }
+    }
 
+    public function postProductUpdate(V $request, $id , ProductManager $productManager)
+    {
+        $data = Request::all();
+        $productManager->productUpdate($data,$id);
+        return redirect('product');
+    }
 
-
-        return view('admin.more', ['product' => $currentProduct,'secondaryPhotos' =>$secondaryPhotos,
-                                    'firstPhoto' =>$firstPhoto]);
+    public function postMakeGeneralPhoto(ProductManager $productManager)
+    {
+        $data = Request::all();
+        $productManager->makeGeneral($data);
     }
 }
 

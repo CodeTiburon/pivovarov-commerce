@@ -49,18 +49,28 @@ class RenderCategoriManager
     public function CategoryCrumbs($products)
     {
         foreach($products as $product) {
-            echo '<div class="product" data-id="'.$product->id .'" >>'. ucfirst($product->name) . '</div>'.'<div class ="more">'.'<button class ="btn btn-mini"  type="button">More...</button>' . '</div>';
+            echo '<div class="product" data-id="'.$product->id .'" >>'. ucfirst($product->name) . '</div>'.'<div class ="more">'.'<button class ="btn"  type="button">More...</button>' . '</div>';
             $categories = $product->ProductToCategory()->get();
             foreach ($categories as $category) {
-//                echo '<br/>';
                 $categoryId = $category->id;
                   echo '<div class="crum"> <ul class="breadcrumb">' . '<span class="delete_product"><button type="button" class="proddell" data-id_product=' . $product->id . ' data-id_category=' . $categoryId . '>Удалить</button></span>';
                 foreach ($category->getAncestorsAndSelf() as $crumb) {
-//                    echo $crumb->name . '/';
                     echo '<li class="add_form">' . $crumb->name . '<span class="divider"></span></li>';
                 }
                 echo '</ul></div>';
             }
+        }
+    }
+
+    public function productCrumbs($product)
+    {
+        $categories = $product->ProductToCategory()->get();
+        foreach ($categories as $category) {
+            echo '<div class="product_crumbs"> <ul class="breadcrumb">';
+            foreach ($category->getAncestorsAndSelf() as $crumb) {
+                echo '<li class="add_form">' . $crumb->name . '<span class="divider"></span></li>';
+            }
+            echo '</ul></div>';
         }
     }
 }
