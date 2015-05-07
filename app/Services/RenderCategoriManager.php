@@ -73,4 +73,41 @@ class RenderCategoriManager
             echo '</ul></div>';
         }
     }
+    public function makeClientTree($category)
+    {
+        if ($category->isChild()){
+            if ($category->isLeaf()) {
+                return '<li class="last" data-id="' . $category->id . '""><h3>' . $category->name . '</h3></li>';
+            }
+            else {
+                $html ='<li data-id="'.$category->id.'""><h3>' .$category->name. '</h3>';
+
+                $html .= '<ul class="not_show">';
+
+                foreach($category->children as $child)
+                    $html .= $this->makeClientTree($child);
+
+                $html .= '</ul>';
+
+                $html .= '</li>';
+            }
+        }
+
+        else {
+            $html ='<li data-id="'.$category->id.'""><h3>' .$category->name. '</h3>';
+
+            $html .= '<ul class="not_show">';
+
+            foreach($category->children as $child)
+                $html .= $this->makeClientTree($child);
+
+            $html .= '</ul>';
+
+            $html .= '</li>';
+
+        }
+
+        return $html;
+    }
+
 }

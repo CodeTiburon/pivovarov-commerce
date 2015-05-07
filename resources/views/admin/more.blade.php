@@ -38,8 +38,12 @@
         {{$product->description}}
     </div>
 
+    <div id="update_price">
+        Price:{{$product->price}}$
+    </div>
+
     <div id="change_form">
-        <form id="products_add"  class="form-horizontal" role="form" method="POST" enctype="multipart/form-data" action="{{ url('/product/product-update',$product->id) }}">
+        <form id="products_update"  class="form-horizontal" role="form" method="POST" enctype="multipart/form-data" action="{{ url('/product/product-update',$product->id) }}">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
             <div class="form-group">
@@ -69,6 +73,13 @@
             </div>
 
             <div class="form-group">
+                <label class="col-md-4 control-label">Price in $</label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" name="price" value="{{$product->price}}">
+                </div>
+            </div>
+
+            <div class="form-group">
                 <label class="col-md-4 control-label">Add Photo</label>
                 <div class="col-md-6">
                     <input type="file" multiple class="file-loading" name="photo[]">
@@ -83,6 +94,12 @@
                 </div>
             </div>
         </form>
+    </div>
+    <div class="container-fluid">
+        <div id = 'errormessage' >
+
+        </div>
+    </div>
     </div>
 
     <div id="product_update">

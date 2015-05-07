@@ -10,7 +10,8 @@ class ProductManager
     {
         $product = new Product(['name'        => $data['name'],
                                 'description' => $data['Description'],
-                                'photo_id'    => 3]);
+                                'photo_id'    => 3,
+                                'price'       => $data['price'] ]);
         $product->save();
         $product->ProductToCategory()->sync($data['selected']);
 
@@ -22,13 +23,16 @@ class ProductManager
         if($photos[0]){
             $uploadDir = base_path() . '/public/photo/';
             $productId = $product->id;
+            $i=0;
             foreach($photos as $photo) {
+                $i++;
                 $imagePrefix = uniqid();
                 $fileName = $imagePrefix . $photo->getClientOriginalName();
                 $uploadfile = $uploadDir . $fileName;
 
                 $photoUpload = new Photo(['product_id' => $productId,
-                                          'image'      => $fileName,]);
+                                          'image'      => $fileName,
+                                          'order'      => $i,]);
                 $photoUpload->save();
 
                 $photo->move($uploadDir, $fileName);
@@ -55,7 +59,7 @@ class ProductManager
             $product->ProductToCategory()->attach($data['selected']);
         }
 
-        $product->update(['name' => $data['name'] ,'description' => $data['Description'] ]);
+        $product->update(['name' => $data['name'] ,'description' => $data['Description'] , 'price' => $data['price'] ]);
 
     }
 

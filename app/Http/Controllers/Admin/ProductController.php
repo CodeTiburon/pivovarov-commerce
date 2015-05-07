@@ -25,9 +25,10 @@ class ProductController extends Controller
     public function postProductAdd(ProductManager $productManager, V $request)
     {
         $this->validate($request, [
-            'name' => 'required|unique:products',
-            'selected' => 'required',
+            'name'        => 'required|unique:products',
+            'selected'    => 'required',
             'Description' => 'required',
+            'price'       =>' required|integer',
         ]);
 
 
@@ -68,7 +69,7 @@ class ProductController extends Controller
     {
 
         $currentProduct = Product::find($productId);
-        if($currentProduct->photo_id != 3) {
+        if ($currentProduct->photo_id != 3) {
             $firstPhoto = $currentProduct->ProductToPhoto()->where('id', '=', $currentProduct->photo_id)->get();
             $secondaryPhotos = Product::find($productId)->ProductToPhoto()->where('id', '!=', $currentProduct->photo_id)->get();
             $tree = Categori::all()->toHierarchy();
@@ -83,9 +84,17 @@ class ProductController extends Controller
 
     public function postProductUpdate(V $request, $id , ProductManager $productManager)
     {
+        $this->validate($request, [
+            'name'        => 'required',
+            'Description' => 'required',
+            'price'       =>' required|integer',
+        ]);
+
         $data = Request::all();
         $productManager->productUpdate($data,$id);
-        return redirect('product');
+
+        $redir = array('redirect'=>url('/product'));
+        return response()->json($redir);
     }
 
     public function postMakeGeneralPhoto(ProductManager $productManager)

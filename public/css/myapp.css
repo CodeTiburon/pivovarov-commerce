@@ -136,3 +136,20 @@ body{
 .first{
     display: none;
 }
+#update_price{
+    text-align: center;
+    font-size: 250%;
+    font-weight: bold;
+    color: #080808;
+    border: 2px solid #080808;
+}
+.client_categories{
+    text-align: center;
+}
+.client_categories_panel{
+    margin-left: 0px;
+    padding-left: 0px;
+}
+.not_show {
+    display: none;
+}

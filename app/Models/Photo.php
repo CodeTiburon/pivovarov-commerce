@@ -6,7 +6,7 @@ class Photo extends Model
 {
     protected $table = 'photos';
 
-    protected $fillable = ['image', 'product_id'];
+    protected $fillable = ['image', 'product_id','order'];
 
         public function PhotoToProduct()
     {

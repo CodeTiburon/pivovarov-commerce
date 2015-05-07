@@ -11,15 +11,17 @@
 |
 */
 
-Route::get('/', 'Auth\AuthController@getLogin');
+//Route::get('/', 'HomeController@index');
 
-Route::get('home', 'HomeController@index');
+//Route::get('home', 'HomeController@index');
 
 //Route::get('/admin',['middleware' => 'admin', 'uses' => 'Admin\AdminController@index']);
 
 Route::controllers([
 	'auth'     => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
-    'admin'    =>'Admin\AdminController',
-    'product'  =>'Admin\ProductController',
+    'admin'    => 'Admin\AdminController',
+    'product'  => 'Admin\ProductController',
+    'home'     => 'HomeController',
+    '/'        => 'HomeController'
 ]);

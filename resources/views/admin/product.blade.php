@@ -55,6 +55,13 @@
             </div>
 
             <div class="form-group">
+                <label class="col-md-4 control-label">Price in $</label>
+                <div class="col-md-6">
+                    <input type="text" id="price" class="form-control" name="price" value="{{ old('name') }}">
+                </div>
+            </div>
+
+            <div class="form-group">
                 <label class="col-md-4 control-label">Upload photo</label>
                 <div class="col-md-6">
                     <input type="file" multiple class="file-loading" name="photo[]">
@@ -75,6 +82,25 @@
         </div>
     </div>
  </div>
+
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Delete category</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Do you really wont delete this category?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" id="confirm" class="btn btn-primary">Ok</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
 @endsection
 
 @section('logo')

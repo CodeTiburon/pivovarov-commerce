@@ -2,6 +2,7 @@ $(document).ready(function(){
     var $_token = $('#token').val();
 
     $('#change').on('click',function(){
+        $('#errormessage').empty().hide(1000);
         $('#change_form').toggle(2000,function(){
             if ($('#change_form').is(':visible')) {
                 $('#change').text('Hide Form!!');
@@ -31,4 +32,23 @@ $(document).ready(function(){
            alert("Не получается изменить фото, попробуйте сделать это позже");
         });
     });
+
+            //Send Form Update product
+    var options = {
+        success: function (data) {
+            window.location.replace(data.redirect);
+        },
+        error: function (data) {
+            $('#errormessage').fadeIn("slow").empty();
+
+            var responseText = data.responseText;
+            var feedback = JSON.parse(responseText);
+
+            for(var property in feedback){
+                $('#errormessage').append('<p>' + feedback[property] + '</p>').addClass('alert alert-danger');
+            }
+        }
+    };
+
+        $('#products_update').ajaxForm(options);
 });
