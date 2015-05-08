@@ -71,7 +71,7 @@ class ProductController extends Controller
         $currentProduct = Product::find($productId);
         if ($currentProduct->photo_id != 3) {
             $firstPhoto = $currentProduct->ProductToPhoto()->where('id', '=', $currentProduct->photo_id)->get();
-            $secondaryPhotos = Product::find($productId)->ProductToPhoto()->where('id', '!=', $currentProduct->photo_id)->get();
+            $secondaryPhotos = Product::find($productId)->ProductToPhoto()->where('id', '!=', $currentProduct->photo_id)->orderBy('order')->get();
             $tree = Categori::all()->toHierarchy();
             return view('admin.more', ['product' => $currentProduct,'secondaryPhotos' =>$secondaryPhotos,
                 'firstPhoto' =>$firstPhoto[0],'tree' => $tree]);

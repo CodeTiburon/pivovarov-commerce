@@ -79,6 +79,7 @@
     <script type="text/javascript" src="{{ asset('/jquery/funcybox/jquery.mousewheel-3.0.6.pack.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/jquery/evevatezoom/jquery.elevatezoom.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/jquery/myelevatezoom.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/jquery/lodash/lodash.js') }}"></script>
 
     @yield('scripts')
 

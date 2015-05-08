@@ -20,14 +20,14 @@
             <input id = "token"type="hidden" name="token" value="{{ \RenderTree::tokenEncrypt() }}">
             <button data-product_id="{{$product->id}}" type="button" class="btn btn-default btn-xs make_general_photo first">Make General</button>
             <a class="fancybox" rel="group" href="{{asset('photo'.'/'. $firstPhoto->image)}}">
-                <img class="zoom general_photo" data-product_id="{{$product->id}}" data-zoom-image="{{asset('photo'.'/'.$firstPhoto->image)}}" data-photo_id="{{$firstPhoto->id}}" src="{{asset('photo'.'/'.$firstPhoto->image)}}" alt="альтернативный текст" width="200" height="150" />
+                <img class="zoom general_photo" data-product_id="{{$product->id}}" data-zoom-image="{{asset('photo'.'/'.$firstPhoto->image)}}" data-photo_id="{{$firstPhoto->id}}" data-photo_order="{{$firstPhoto->order}}" src="{{asset('photo'.'/'.$firstPhoto->image)}}" alt="альтернативный текст" width="200" height="150" />
             </a>
         </div>
         <div id="secondary_photo">
         @foreach($secondaryPhotos as $secondaryPhoto)
                 <button data-product_id="{{$product->id}}" type="button" class="btn btn-default btn-xs make_general_photo">Make General</button>
         <a class="fancybox" rel="group" href="{{asset('photo'.'/'.$secondaryPhoto->image)}}">
-            <img class="zoom secondary_photos" data-product_id="{{$product->id}}" data-photo_id="{{$secondaryPhoto->id}}" src="{{asset('photo'.'/'.$secondaryPhoto->image)}}" alt="альтернативный текст" width="200" height="150" />
+            <img class="zoom secondary_photos" data-product_id="{{$product->id}}" data-photo_order="{{$secondaryPhoto->order}}" data-photo_id="{{$secondaryPhoto->id}}" src="{{asset('photo'.'/'.$secondaryPhoto->image)}}" alt="альтернативный текст" width="200" height="150" />
         </a>
         @endforeach
         </div>

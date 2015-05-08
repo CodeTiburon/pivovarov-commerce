@@ -141,15 +141,37 @@ body{
     font-size: 250%;
     font-weight: bold;
     color: #080808;
-    border: 2px solid #080808;
 }
 .client_categories{
     text-align: center;
 }
-.client_categories_panel{
-    margin-left: 0px;
-    padding-left: 0px;
-}
 .not_show {
     display: none;
+}
+.client_product_info{
+    padding: 2px;
+    text-align: center;
+    font-size: 150%;
+    font-weight: bold;
+    color: #080808;
+}
+.client_product_photo{
+    cursor: pointer;
+}
+.client_product_name{
+    cursor: pointer;
+}
+#client_product_more{
+    text-align: center;
+}
+#price{
+    text-align: center;
+    font-size: 200%;
+    font-weight: bold;
+    color: #080808;
+    width: 30%;
+    margin: 0px auto;
+}
+.bay{
+    margin: 0px auto;
 }
