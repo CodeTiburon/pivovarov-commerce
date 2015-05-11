@@ -6,7 +6,11 @@
             Back to Product
         </button></a>
     </div>
+    <div class="container-fluid">
+        <div id = 'successmessage'>
 
+        </div>
+    </div>
     <div class="container-fluid">
         <div class="row">
             <div id="product_name">
@@ -18,17 +22,19 @@
     <div id="product_photos">
         <div id="first_photo">
             <input id = "token"type="hidden" name="token" value="{{ \RenderTree::tokenEncrypt() }}">
-            <button data-product_id="{{$product->id}}" type="button" class="btn btn-default btn-xs make_general_photo first">Make General</button>
+            <button data-product_id="{{$product->id}}" type="button" class="btn btn-default btn-xs make_general_photo first">Make Primary</button>
             <a class="fancybox" rel="group" href="{{asset('photo'.'/'. $firstPhoto->image)}}">
-                <img class="zoom general_photo" data-product_id="{{$product->id}}" data-zoom-image="{{asset('photo'.'/'.$firstPhoto->image)}}" data-photo_id="{{$firstPhoto->id}}" data-photo_order="{{$firstPhoto->order}}" src="{{asset('photo'.'/'.$firstPhoto->image)}}" alt="альтернативный текст" width="200" height="150" />
+                <img class="zoom general_photo " data-product_id="{{$product->id}}" data-zoom-image="{{asset('photo'.'/'.$firstPhoto->image)}}" data-photo_id="{{$firstPhoto->id}}" data-photo_order="{{$firstPhoto->order}}" src="{{asset('photo'.'/'.$firstPhoto->image)}}" alt="альтернативный текст" width="300" height="200" />
             </a>
         </div>
-        <div id="secondary_photo">
+        <div id="secondary_photo" class="sort">
         @foreach($secondaryPhotos as $secondaryPhoto)
-                <button data-product_id="{{$product->id}}" type="button" class="btn btn-default btn-xs make_general_photo">Make General</button>
-        <a class="fancybox" rel="group" href="{{asset('photo'.'/'.$secondaryPhoto->image)}}">
-            <img class="zoom secondary_photos" data-product_id="{{$product->id}}" data-photo_order="{{$secondaryPhoto->order}}" data-photo_id="{{$secondaryPhoto->id}}" src="{{asset('photo'.'/'.$secondaryPhoto->image)}}" alt="альтернативный текст" width="200" height="150" />
-        </a>
+            <div class="sort_photo" data-photo_id="{{$secondaryPhoto->id}}"  data-photo_order="{{$secondaryPhoto->order}}">
+                <button data-product_id="{{$product->id}}" type="button" class="btn btn-default btn-xs make_general_photo">Make Primary</button>
+                <a class="fancybox" rel="group" href="{{asset('photo'.'/'.$secondaryPhoto->image)}}">
+                    <img class="zoom secondary_photos" data-product_id="{{$product->id}}" data-zoom-image="{{asset('photo'.'/'.$secondaryPhoto->image)}}" data-photo_order="{{$secondaryPhoto->order}}" data-photo_id="{{$secondaryPhoto->id}}" src="{{asset('photo'.'/'.$secondaryPhoto->image)}}" alt="альтернативный текст" width="300" height="200" />
+                </a>
+            </div>
         @endforeach
         </div>
     </div>
@@ -40,7 +46,13 @@
 
     <div id="update_price">
         Price:{{$product->price}}$
+        <div>
+            <button type="button" class="btn btn-default save_image">
+                Save Photo Order
+            </button>
+        </div>
     </div>
+
 
     <div id="change_form">
         <form id="products_update"  class="form-horizontal" role="form" method="POST" enctype="multipart/form-data" action="{{ url('/product/product-update',$product->id) }}">
@@ -73,9 +85,12 @@
             </div>
 
             <div class="form-group">
-                <label class="col-md-4 control-label">Price in $</label>
+                <label class="col-md-4 control-label">Price</label>
                 <div class="col-md-6">
-                    <input type="text" class="form-control" name="price" value="{{$product->price}}">
+                    <div class="input-group">
+                        <div class="input-group-addon">$</div>
+                        <input type="text" class="form-control" name="price" value="{{$product->price}}">
+                    </div>
                 </div>
             </div>
 

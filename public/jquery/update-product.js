@@ -51,4 +51,31 @@ $(document).ready(function(){
     };
 
         $('#products_update').ajaxForm(options);
+
+
+    $(".sort").sortable();
+    $('.save_image').on('click',function(){
+        var order = $(".sort").sortable("toArray",{ attribute: "data-photo_order"});
+        var photoID = $(".sort").sortable("toArray",{ attribute: "data-photo_id"});
+
+        var request = $.ajax({
+            url: "./../change-photo-order",
+            method: "POST",
+            headers: {'X-XSRF-TOKEN': $_token},
+            data: {order: order, photoID: photoID}
+        });
+        request.done(function(){
+            $('#successmessage')
+                .empty();
+            $('#successmessage')
+                .addClass("alert alert-success")
+                    .text('Order update successful')
+                        .fadeIn("slow")
+                            .delay(1500)
+                                .fadeOut(3000);
+        });
+        request.fail(function() {
+            alert("Не получается изменить фото, попробуйте сделать это позже");
+        });
+    });
 });

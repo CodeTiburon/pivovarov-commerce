@@ -44,10 +44,11 @@ class HomeController extends Controller {
                 $productArray = $product->toArray();
                 $productArray['photo']=$uploadDir . $firstPhoto->image;
                 $productsAll[] = $productArray;
+            } else {
+                $productArray = $product->toArray();
+                $productArray['photo'] = $uploadDir . 'nophoto.jpg';
+                $productsAll[] = $productArray;
             }
-            $productArray = $product->toArray();
-            $productArray['photo']=$uploadDir . 'nophoto.jpg';
-            $productsAll[] = $productArray;
         }
 
         $send = array('products' => $productsAll);

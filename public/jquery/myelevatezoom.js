@@ -1,3 +1,7 @@
 $(document).ready(function() {
-    $(".zoom").elevateZoom();;
+    $(".zoom").elevateZoom({
+        zoomType	: "inner",
+        cursor: "crosshair",
+        scrollZoom : true
+    });
 });

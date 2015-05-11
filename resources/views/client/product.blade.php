@@ -2,18 +2,18 @@
 
 @section('content')
     <div id="back_to_product">
-        <a href="{{ url('/product') }}"><button id="back_to_list" type="submit" class="btn btn-default">
-                Back to Product
+        <a href="{{ url('/') }}"><button id="back_to_list" type="submit" class="btn btn-default">
+                Back to Category
             </button></a>
     </div>
 
-    <div class="container-fluid">
+<div class="container-fluid">
         <div class="row">
             <div id="product_name">
                 {{$product->name}}
             </div>
         </div>
-    </div>
+
     @if($firstPhoto)
         <div id="client_product_more">
             <div id="first_photo">
@@ -42,7 +42,7 @@
             <button class="bth btn-lg btn-success bay" data-product_id="{{$product->id}}" type="button">Bay now</button>
         <div>
     </div>
-
+</div>
 
 
 @endsection('content')

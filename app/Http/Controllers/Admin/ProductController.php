@@ -102,5 +102,11 @@ class ProductController extends Controller
         $data = Request::all();
         $productManager->makeGeneral($data);
     }
+
+    public function postChangePhotoOrder(ProductManager $productManager)
+    {
+        $data = Request::all();
+        $a = $productManager->ChangePhotoOrder($data);
+    }
 }
 

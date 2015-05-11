@@ -4,7 +4,7 @@
 <div class="container-fluid client" xmlns="http://www.w3.org/1999/html">
 	<div class="row">
 		<div class="col-md-3">
-			<div class="panel panel-default">
+			<div class="panel panel-success">
                 <input id = "token"type="hidden" name="token" value="{{ \RenderTree::tokenEncrypt() }}">
 
                 <div class="panel-heading category client_categories">
@@ -20,18 +20,24 @@
 		</div>
 	</div>
 
-        <div class="col-md-7 ">
-            <div class="container-fluid client_products">
+        <div class="col-md-9">
+            <div class="panel panel-success">
+                <div class="panel-heading category text-center">
+                    Products
+                </div>
+                <div class="container-fluid client_products">
+                </div>
             </div>
         </div>
 </div>
+
     <script type="text/template" id="client_product_template">
 
         <div class="col-md-3 col-md-offset-1 client_product_info">
 
             <div class="row">
                 <div class="col-md-12">
-                    <img data-product_id=" <%= id %>" class="client_product_photo" src="<%= photo %>" alt="" width="200" height="150"/>
+                    <img data-product_id=" <%= id %>" class="client_product_photo img-rounded" src="<%= photo %>" alt="" width="200" height="150"/>
                 </div>
             </div>
 

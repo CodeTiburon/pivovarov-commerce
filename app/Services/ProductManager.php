@@ -69,4 +69,17 @@ class ProductManager
         $product->photo_id = $data['photoId'];
         $product->save();
     }
+
+    public function ChangePhotoOrder($data)
+    {
+        $photoIds = $data['photoID'];
+        $orders = $data['order'];
+        foreach($photoIds as $photoId){
+            $currentPhoto =Photo::find($photoId);
+            $currentOrder = min($orders);
+            $currentPhoto->order = $currentOrder;
+            $currentPhoto->save();
+            unset($orders[array_search($currentOrder,$orders)]);
+        }
+    }
 }

@@ -55,9 +55,12 @@
             </div>
 
             <div class="form-group">
-                <label class="col-md-4 control-label">Price in $</label>
+                <label class="col-md-4 control-label">Price</label>
                 <div class="col-md-6">
-                    <input type="text" id="price" class="form-control" name="price" value="{{ old('name') }}">
+                    <div class="input-group">
+                        <div class="input-group-addon">$</div>
+                        <input type="text" id="price_create" class="form-control" name="price" value="{{ old('name') }}">
+                    </div>
                 </div>
             </div>
 

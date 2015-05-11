@@ -21,6 +21,8 @@ $(document).ready(function(){
         request.done(function(data) {
             for (products in data.products)
             {
+
+                console.log(data.products[products]);
                 var product = (data.products[products]);
 
                 var productTemplate = _.template($('#client_product_template').html());

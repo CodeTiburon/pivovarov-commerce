@@ -93,7 +93,7 @@ body{
     text-align: center;
 }
 
-#product_photos > div {
+#product_photos  div {
     display: inline-block;
 }
 
@@ -174,4 +174,24 @@ body{
 }
 .bay{
     margin: 0px auto;
+}
+#price_create{
+    text-align: center;
+    font-size: 100%;
+    font-weight: bold;
+    color: #080808;
+    width: 30%;
+}
+.sort_photo{
+    padding-left: 5px;
+}
+/*.zoomContainer{*/
+    /*z-index: -99999;*/
+/*}*/
+.save_image{
+    margin: 0px auto;
+}
+#successmessage{
+    display: none;
+    text-align: center;
 }
