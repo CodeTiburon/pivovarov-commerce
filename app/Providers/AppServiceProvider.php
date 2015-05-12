@@ -43,7 +43,7 @@ class AppServiceProvider extends ServiceProvider {
 
         $this->app->singleton('ProductManager', function($app)
         {
-            return new \App\Services\RenderCategoriManager($app);
+            return new \App\Services\ProductManager($app);
         });
 	}
 

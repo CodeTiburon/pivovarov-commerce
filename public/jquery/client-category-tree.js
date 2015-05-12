@@ -22,7 +22,6 @@ $(document).ready(function(){
             for (products in data.products)
             {
 
-                console.log(data.products[products]);
                 var product = (data.products[products]);
 
                 var productTemplate = _.template($('#client_product_template').html());

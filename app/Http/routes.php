@@ -21,7 +21,9 @@ Route::controllers([
 	'auth'     => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
     'admin'    => 'Admin\AdminController',
+    'cart'     => 'CartController',
     'product'  => 'Admin\ProductController',
     'home'     => 'HomeController',
-    '/'        => 'HomeController'
+    '/'        => 'HomeController',
+
 ]);

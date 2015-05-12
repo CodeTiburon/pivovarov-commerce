@@ -38,6 +38,15 @@
         @endforeach
         </div>
     </div>
+    @else()
+        <div id="client_product_more">
+            <div id="first_photo">
+                <input id = "token"type="hidden" name="token" value="{{ \RenderTree::tokenEncrypt() }}">
+                <a class="fancybox" rel="group" href="{{asset('photo'.'/'. 'nophoto.jpg')}}">
+                    <img data-product_id="{{$product->id}}" src="{{asset('photo'.'/'.'nophoto.jpg')}}" alt="альтернативный текст" width="400" height="300" />
+                </a>
+            </div>
+        </div>
     @endif
 
     <div id="description">

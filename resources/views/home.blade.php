@@ -53,7 +53,7 @@
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row client_product_description">
                 <div class="col-md-12">
             Description: <%= description %>
                 </div>

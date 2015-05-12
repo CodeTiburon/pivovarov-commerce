@@ -3,6 +3,7 @@
 
 use App\Models\Photo;
 use App\Models\Product;
+use Illuminate\Support\Facades\DB;
 
 class ProductManager
 {
@@ -81,5 +82,16 @@ class ProductManager
             $currentPhoto->save();
             unset($orders[array_search($currentOrder,$orders)]);
         }
+    }
+    public function price($productIds)
+    {
+//        return $priceSum = DB::table('products')->whereIn('id', $productIds)->sum('price');
+    }
+    public function getById($productIds)
+    {
+        foreach($productIds as $productId) {
+            $products[] = Product::find($productId);
+        }
+        return $products;
     }
 }

@@ -195,3 +195,13 @@ body{
     display: none;
     text-align: center;
 }
+.client_product_description{
+    display: none;
+}
+.client_product_info:hover .client_product_description{
+    display: block;
+}
+.client_product_description{
+    font-size: 50%;
+    color: #080808;
+}
