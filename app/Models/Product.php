@@ -14,4 +14,8 @@ class Product extends Model
     {
         return $this->hasMany('App\Models\Photo');
     }
+    public function productToOrder()
+    {
+        return $this->belongsToMany('App\Models\Order','orders_session','product_id','order_id');
+    }
 }

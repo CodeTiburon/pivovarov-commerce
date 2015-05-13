@@ -205,3 +205,23 @@ body{
     font-size: 50%;
     color: #080808;
 }
+.cart_content{
+    padding-top: 5px;
+}
+.apply_btn{
+    padding-top: 10px;
+}
+.sum_order{
+    padding-top: 10px;
+    font-size: 100%;
+    font-weight: bold;
+    color: #080808;
+    text-align: center;
+}
+.apply_btn{
+    text-align: center;
+}
+.quantity{
+    width: 70px;
+    text-align: center;
+}

@@ -1,6 +1,9 @@
 <?php namespace App\Http\Controllers;
 
+use App\Models\Order;
+use App\Models\Photo;
 use App\Models\Product;
+use App\Services\OrderManager;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Request;
@@ -14,27 +17,59 @@ class CartController extends Controller
         $productIds[] =  $data['productId'];
         $quantity = count($productIds);
         Session::put('productId', $productIds);
-        $sumPrice = 0;
 //        Session::forget('productId');
-        foreach($productIds as $productId){
-            $price = Product::find($productId)->price;
-            $sumPrice += $price;
+        $products = DB::table('products')->whereIn('id', $productIds)->get();
+        $priceSum =0;
+        foreach ($products as $product){
+            $quantityId = array_count_values($productIds);
+            $priceSum += $product->price * $quantityId[$product->id];
         }
-//        $priceSum = DB::table('products')->whereIn('id', $productIds)->sum('price');
-
-
-
         return response()->json(array('quantity'=>$quantity,'price'=>$priceSum));
     }
 
     public function getGetProduct()
     {
-        if(count(Session::get('productId'))!==0) {
+        if(Session::get('productId')) {
             $productIds = Session::get('productId');
             $products = Product::find($productIds);
-            $priceSum = DB::table('products')->whereIn('id', $productIds)->sum('price');
-            return view('client.order',['products' => $products,'priceSum' => $priceSum]);
+            $priceSum =0;
+            foreach ($products as $product){
+                $quantityId = array_count_values($productIds);
+                $priceSum += $product->price * $quantityId[$product->id];
+                $product->quantity = $quantityId[$product->id];
+            }
+            $uploadDir = 'photo/';
+            foreach ($products as $product) {
+                $photo = $product->photo_id;
+                $firstPhoto = Photo::find($photo);
+                if($firstPhoto !== null) {
+                    $product->photo = $uploadDir . $firstPhoto->image;
+                    $productsAll[] = $product;
+                } else {
+                    $product->photo = $uploadDir . 'nophoto.jpg';
+                    $productsAll[] = $product;
+                }
+            }
+            return view('client.order',['products' => $productsAll,'priceSum' => $priceSum]);
+        } else {
+            return view('client.order');
         }
-        return view('client.order');
+    }
+    public function getAddress()
+    {
+        return view('client.apply');
+    }
+    public function postConfirm(OrderManager $orderManager)
+    {
+        $data = Request::all();
+        $productsIds =Session::get('productId');
+        $orderManager->newOrder($data,$productsIds);
+        return redirect(url('/'));
+    }
+    public function postDeleteProduct()
+    {
+        $data = Request::all();
+        $productIds = Session::get('productId');
+
     }
 }

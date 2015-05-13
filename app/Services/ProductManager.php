@@ -85,7 +85,13 @@ class ProductManager
     }
     public function price($productIds)
     {
-//        return $priceSum = DB::table('products')->whereIn('id', $productIds)->sum('price');
+        $products = DB::table('products')->whereIn('id', $productIds)->get();
+        $priceSum =0;
+        foreach ($products as $product){
+            $quantityId = array_count_values($productIds);
+            $priceSum += $product->price * $quantityId[$product->id];
+        }
+        return $priceSum;
     }
     public function getById($productIds)
     {

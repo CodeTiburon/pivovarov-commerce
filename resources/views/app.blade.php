@@ -43,7 +43,14 @@
 
 				<ul class="nav navbar-nav navbar-right">
                     @if (Auth::guest())
-                        <li><a href="{{ url('/auth/login') }}">Shoping Cart</a></li>
+                        <li><a href="{{ url('/cart/get-product') }}">Shoping Cart<br/>Count: <span id="quantity" >
+                        @if(count(Session::get('productId'))!==0)
+                            {{count(Session::get('productId'))}}
+                            </span> <br/>Sum: <span id="sum" >{{Product::price(Session::get('productId'))}}</span> $</a></li>
+                        @else
+                            0
+                            </span> <br/>Sum: <span id="sum" > 0 </span> $</a></li>
+                        @endif
 						<li><a href="{{ url('/auth/login') }}">Login</a></li>
 						<li><a href="{{ url('/auth/register') }}">Register</a></li>
                     @elseif(Auth::checkAdmin())

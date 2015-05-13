@@ -45,6 +45,10 @@ class AppServiceProvider extends ServiceProvider {
         {
             return new \App\Services\ProductManager($app);
         });
+        $this->app->singleton('OrderManager', function($app)
+        {
+            return new \App\Services\OrderManager($app);
+        });
 	}
 
 }
