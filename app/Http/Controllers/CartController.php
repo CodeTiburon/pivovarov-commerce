@@ -59,8 +59,13 @@ class CartController extends Controller
     {
         return view('client.apply');
     }
-    public function postConfirm(OrderManager $orderManager)
+    public function postConfirm(OrderManager $orderManager, Request $request)
     {
+        $this->validate($request, [
+            'address' => 'required',
+            'phone'   => 'required',
+        ]);
+
         $data = Request::all();
         $productsIds =Session::get('productId');
         $orderManager->newOrder($data,$productsIds);
@@ -70,6 +75,10 @@ class CartController extends Controller
     {
         $data = Request::all();
         $productIds = Session::get('productId');
+
+    }
+    public function postUpdateQuantity()
+    {
 
     }
 }

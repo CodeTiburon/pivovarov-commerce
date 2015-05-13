@@ -1,6 +1,9 @@
 @extends('app')
 
 @section('content')
+    <div id = 'messege' >
+
+    </div>
 
     <form id="products_add"  class="form-horizontal" role="form" method="POST" action="{{ url('cart/confirm') }}">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -26,11 +29,17 @@
 
         <div class="form-group">
             <div class="col-md-6 col-md-offset-4">
-                <button type="submit" class="bth btn-lg btn-success">
+                <button  type="submit" class="bth btn-lg btn-success">
                     Confirm
                 </button>
             </div>
         </div>
     </form>
+    <div id = 'errormessage' >
 
+    </div>
+@endsection
+
+@section('scripts')
+    <script type="text/javascript" src="{{ asset('/jquery/apply.js') }}"></script>
 @endsection

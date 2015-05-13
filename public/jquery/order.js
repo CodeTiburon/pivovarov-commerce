@@ -13,4 +13,17 @@ $(document).ready(function(){
             alert ('ok');
         });
     });
+
+    $(".change").on('click',function(){
+        var quantity = $(this).parent('td').prev('td').children('input').val();
+        var reqest = $.ajax({
+            url: "update-quantity",
+            method: "POST",
+            headers: {'X-XSRF-TOKEN': $_token},
+            data: {quantity: quantity}
+        });
+        reqest.done(function(data) {
+            alert ('ok');
+        });
+    });
 });

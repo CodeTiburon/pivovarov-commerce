@@ -33,7 +33,7 @@
                         <td>{{$product->name}}</td>
                         <td>{{$product->description}}</td>
                         <td><input class="quantity" type="number" value="{{$product->quantity}}"></td>
-                        <td><button id="back_to_list" type="submit" class="btn btn-warning btn-sm">Chenge</button></td>
+                        <td><button id="back_to_list" type="submit" class="btn btn-warning btn-sm change">Change</button></td>
                     </tr>
                     @endforeach
                 </table>
