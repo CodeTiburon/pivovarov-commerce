@@ -1,6 +1,8 @@
 <?php namespace App\Services;
 
 use App\Models\Order;
+use App\Models\OrderSession;
+use Illuminate\Support\Facades\Session;
 
 class OrderManager
 {
@@ -11,6 +13,19 @@ class OrderManager
                                 'phone' => $data['phone'],
                            ]);
         $order->save();
-        $order->orderToProduct()->sync($productsIds);
+        $currentOrder = $order->id;
+        $this->newOderSession($productsIds,$currentOrder);
+        Session::forget('cart');
+//        $order->orderToProduct()->sync($productsIds);
+    }
+    public function newOderSession($productsIds,$currentOrder)
+    {
+        foreach($productsIds as $id=>$quantitty) {
+            $orderSession = new OrderSession([  'order_id'    => $currentOrder,
+                                                'product_id' => $id,
+                                                'quantity'   =>  $quantitty,
+            ]);
+            $orderSession->save();
+        }
     }
 }

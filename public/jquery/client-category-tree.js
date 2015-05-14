@@ -21,7 +21,6 @@ $(document).ready(function(){
         request.done(function(data) {
             for (products in data.products)
             {
-
                 var product = (data.products[products]);
 
                 var productTemplate = _.template($('#client_product_template').html());
@@ -29,6 +28,7 @@ $(document).ready(function(){
                 var RadyTemplate = productTemplate(product);
 
                 $('.client_products').append(RadyTemplate);
+                $('.my_paginator').show();
             }
         });
 

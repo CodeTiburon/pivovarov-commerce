@@ -33,7 +33,7 @@ class HomeController extends Controller {
     {
         $categoryId = Request::input('categoryId');
         $category = Categori::find($categoryId);
-        $products = $category->CategoryToProduct()->get();
+        $products = $category->CategoryToProduct()->paginate(5);
         $productsAll=array();
         $uploadDir = 'photo/';
         foreach ($products as $product) {
@@ -44,10 +44,12 @@ class HomeController extends Controller {
                 $productArray = $product->toArray();
                 $productArray['photo']=$uploadDir . $firstPhoto->image;
                 $productsAll[] = $productArray;
+//                  $product->photo = $uploadDir . $firstPhoto->image;
             } else {
                 $productArray = $product->toArray();
                 $productArray['photo'] = $uploadDir . 'nophoto.jpg';
                 $productsAll[] = $productArray;
+//                  $product->photo = $uploadDir . 'nophoto.jpg';
             }
         }
 

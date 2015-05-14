@@ -225,3 +225,15 @@ body{
     width: 70px;
     text-align: center;
 }
+.no_products{
+    padding-top: 10px;
+    font-size: 200%;
+    font-weight: bold;
+    color: #080808;
+    text-align: center;
+}
+.my_paginator{
+    text-align: center;
+    display: none;
+}
+

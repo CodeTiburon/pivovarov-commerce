@@ -2,11 +2,11 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class Order extends Model
+class OrderSession extends Model
 {
     protected $table = 'orders_session';
 
-    protected $fillable = ['order_id', 'product_id'];
+    protected $fillable = ['order_id', 'product_id','quantity'];
 
 //    public function createOrderSession($data)
 //    {

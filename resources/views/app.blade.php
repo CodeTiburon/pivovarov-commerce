@@ -44,9 +44,9 @@
 				<ul class="nav navbar-nav navbar-right">
                     @if (Auth::guest())
                         <li><a href="{{ url('/cart/get-product') }}">Shoping Cart<br/>Count: <span id="quantity" >
-                        @if(count(Session::get('productId'))!==0)
-                            {{count(Session::get('productId'))}}
-                            </span> <br/>Sum: <span id="sum" >{{Product::price(Session::get('productId'))}}</span> $</a></li>
+                        @if(count(Session::get('cart'))!==0)
+                            {{array_sum(Session::get('cart'))}}
+                            </span> <br/>Sum: <span id="sum" >{{Product::price(Session::get('cart'))}}</span> $</a></li>
                         @else
                             0
                             </span> <br/>Sum: <span id="sum" > 0 </span> $</a></li>
@@ -56,13 +56,13 @@
                     @elseif(Auth::checkAdmin())
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
                         <li><a href="{{ url('/cart/get-product') }}">Shoping Cart<br/>Count: <span id="quantity" >
-                                    @if(count(Session::get('productId'))!==0)
-                                        {{count(Session::get('productId'))}}
-                                        </span> <br/>Sum: <span id="sum" >{{Product::price(Session::get('productId'))}}</span> $</a></li>
-                                    @else
-                                        0
-                                        </span> <br/>Sum: <span id="sum" > 0 </span> $</a></li>
-                                    @endif
+                                     @if(count(Session::get('cart'))!==0)
+                                            {{array_sum(Session::get('cart'))}}
+                                            </span> <br/>Sum: <span id="sum" >{{Product::price(Session::get('cart'))}}</span> $</a></li>
+                                     @else
+                                            0
+                                            </span> <br/>Sum: <span id="sum" > 0 </span> $</a></li>
+                                     @endif
 
 
                         <ul class="dropdown-menu" role="menu">

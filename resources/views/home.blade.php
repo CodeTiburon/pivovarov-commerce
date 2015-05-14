@@ -27,6 +27,15 @@
                 </div>
                 <div class="container-fluid client_products">
                 </div>
+                <div class="my_paginator">
+                <ul class="pagination ">
+                  <li><a href="#">1</a></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">5</a></li>
+               </ul>
+               <div>
             </div>
         </div>
 </div>

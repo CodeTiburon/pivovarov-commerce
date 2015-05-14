@@ -32,7 +32,7 @@
             <div class="sort_photo" data-photo_id="{{$secondaryPhoto->id}}"  data-photo_order="{{$secondaryPhoto->order}}">
                 <button data-product_id="{{$product->id}}" type="button" class="btn btn-default btn-xs make_general_photo">Make Primary</button>
                 <a class="fancybox" rel="group" href="{{asset('photo'.'/'.$secondaryPhoto->image)}}">
-                    <img class="zoom secondary_photos" data-product_id="{{$product->id}}" data-zoom-image="{{asset('photo'.'/'.$secondaryPhoto->image)}}" data-photo_order="{{$secondaryPhoto->order}}" data-photo_id="{{$secondaryPhoto->id}}" src="{{asset('photo'.'/'.$secondaryPhoto->image)}}" alt="альтернативный текст" width="300" height="200" />
+                    <img class="secondary_photos" data-product_id="{{$product->id}}" data-photo_order="{{$secondaryPhoto->order}}" data-photo_id="{{$secondaryPhoto->id}}" src="{{asset('photo'.'/'.$secondaryPhoto->image)}}" alt="альтернативный текст" width="300" height="200" />
                 </a>
             </div>
         @endforeach
