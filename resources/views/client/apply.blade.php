@@ -25,6 +25,15 @@
                 <input type="text" id="phone" class="form-control" name="phone" value="{{ old('name') }}">
             </div>
         </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Please Enter your Phone</label>
+            <div class="col-md-6">
+                <select type="select" id="pay"  name="pay">
+                    <option value="cash">Cash</option>
+                    <option value="card">Card</option>
+                </select>
+            </div>
+        </div>
 
 
         <div class="form-group">

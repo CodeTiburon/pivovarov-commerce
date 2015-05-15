@@ -33,7 +33,7 @@ class HomeController extends Controller {
     {
         $categoryId = Request::input('categoryId');
         $category = Categori::find($categoryId);
-        $products = $category->CategoryToProduct()->paginate(5);
+        $products = $category->CategoryToProduct()->paginate(2);
         $productsAll=array();
         $uploadDir = 'photo/';
         foreach ($products as $product) {
@@ -53,7 +53,7 @@ class HomeController extends Controller {
             }
         }
 
-        $send = array('products' => $productsAll);
+        $send = array('products' => $productsAll,'plincs' => $products->render());
         return response()->json($send);
     }
 

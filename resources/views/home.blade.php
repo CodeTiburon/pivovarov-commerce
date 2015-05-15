@@ -27,14 +27,9 @@
                 </div>
                 <div class="container-fluid client_products">
                 </div>
-                <div class="my_paginator">
-                <ul class="pagination ">
-                  <li><a href="#">1</a></li>
-                  <li><a href="#">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li><a href="#">4</a></li>
-                  <li><a href="#">5</a></li>
-               </ul>
+                <div class="my_paginator  my_p ">
+
+
                <div>
             </div>
         </div>
@@ -67,6 +62,11 @@
             Description: <%= description %>
                 </div>
             </div>
+            <div class="row client_product_description">
+                <div class="col-md-12">
+                        <button class="bth btn-lg btn-success buy" data-product_id="<%= id %>"  data-product_price="<%= price %>" type="button">Buy now</button>
+                </div>
+            </div>
         </div>
 
     </script>
@@ -77,5 +77,6 @@
 @section('scripts')
 
     <script type="text/javascript" src="{{ asset('/jquery/client-category-tree.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/jquery/bay.js') }}"></script>
 
 @endsection
